@@ -31,7 +31,8 @@ func main() {
 	e.GET("/isInt", func(c echo.Context) error {
 		a := c.QueryParam("a")
 
-		log.WithField("a", a).Debug("parsing value")
+		logCtx := log.WithField("a", a)
+		logCtx.Debug("parsing value")
 
 		if _, err := strconv.Atoi(a); err != nil {
 			log.WithField("a", a).Error("value is not an integer")
@@ -39,7 +40,7 @@ func main() {
 			return c.String(http.StatusBadRequest, "not ok")
 		}
 
-		log.WithField("a", a).Debug("integer parsed")
+		logCtx.Debug("integer parsed")
 
 		return c.String(http.StatusOK, "ok")
 	})
