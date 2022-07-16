@@ -13,6 +13,15 @@ import (
 
 func init() {
 	log.SetOutput(os.Stdout)
+	log.SetFormatter(&log.JSONFormatter{})
+
+	logLevel, err := log.ParseLevel(os.Getenv("LOG_LEVEL"))
+
+	if err != nil {
+		logLevel = log.InfoLevel
+	}
+
+	log.SetLevel(logLevel)
 }
 
 func main() {
@@ -22,9 +31,15 @@ func main() {
 	e.GET("/isInt", func(c echo.Context) error {
 		a := c.QueryParam("a")
 
+		log.WithField("a", a).Debug("parsing value")
+
 		if _, err := strconv.Atoi(a); err != nil {
+			log.WithField("a", a).Error("value is not an integer")
+
 			return c.String(http.StatusBadRequest, "not ok")
 		}
+
+		log.WithField("a", a).Debug("integer parsed")
 
 		return c.String(http.StatusOK, "ok")
 	})

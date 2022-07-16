@@ -8,6 +8,8 @@ services:
     volumes:
       - ../:/opt/app/api
     command: tail -f /dev/null
+    environment:
+      LOG_LEVEL: "debug"
     ports:
       - 2001:2001
 
