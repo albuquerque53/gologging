@@ -45,8 +45,9 @@ make run
 ## How to use
 
 To test you only need execute requests to `/isInt` passing the query param `value`. <br>
+To make things easly, I developed a simple script to execute HTTP requests to this API, so... <br>
 
-1. To run requests by your CLI, simply run
+1. To run requests from your CLI, simply run:
 
 ```sh
 sh ./request.sh <your-value-here>
