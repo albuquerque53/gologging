@@ -2,7 +2,10 @@ module gologging
 
 go 1.18
 
-require github.com/labstack/echo v3.3.10+incompatible
+require (
+	github.com/labstack/echo v3.3.10+incompatible
+	github.com/sirupsen/logrus v1.8.1
+)
 
 require (
 	github.com/labstack/gommon v0.3.1 // indirect
