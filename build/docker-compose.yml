@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  gologging:
+    image: golang:1.18
+    container_name: gologging_app
+    working_dir: /opt/app/api
+    volumes:
+      - ../:/opt/app/api
+    command: tail -f /dev/null
+
+
