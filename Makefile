@@ -7,6 +7,13 @@ app:
 	@echo "Getting into container..."
 	docker exec -it gologging_app /bin/bash
 
+install:
+	@echo "Installing dependencies..."
+	go mod tidy
+	@echo "Vendoring..."
+	go mod vendor
+	@echo "Finished!"
+
 run:
 	go run ./cmd/main.go
 
