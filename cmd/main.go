@@ -29,13 +29,13 @@ func main() {
 	e.Use(loggingMiddleware)
 
 	e.GET("/isInt", func(c echo.Context) error {
-		a := c.QueryParam("a")
+		value := c.QueryParam("value")
 
-		logCtx := log.WithField("a", a)
+		logCtx := log.WithField("value", value)
 		logCtx.Debug("parsing value")
 
-		if _, err := strconv.Atoi(a); err != nil {
-			log.WithField("a", a).Error("value is not an integer")
+		if _, err := strconv.Atoi(value); err != nil {
+			log.WithField("value", value).Error("value is not an integer")
 
 			return c.String(http.StatusBadRequest, "not ok")
 		}
